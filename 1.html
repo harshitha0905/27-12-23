@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: black;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        #feedback-form {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        label emoji {
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[type="radio"]:checked + label emoji {
+            color: #007bff;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #thank-you {
+            display: none;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <title>Feedback Form</title>
+</head>
+<body>
+
+    <div id="feedback-form">
+        <h2>Your Feedback</h2>
+        <form id="myForm">
+            <label>
+                <input type="radio" name="feedback" value="satisfied">
+                <emoji>😄</emoji>
+                <input type="radio" name="feedback" value="neutral">
+                <emoji>😐</emoji>
+                <input type="radio" name="feedback" value="unhappy">
+                <emoji>😞</emoji>
+            </label>
+
+            <input type="submit" value="Send Feedback">
+        </form>
+    </div>
+
+    <div id="thank-you">
+        <emoji>💖</emoji> Thank you!
+        <p>Your feedback: <span id="feedback-value"></span></p>
+    </div>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const feedbackValue = document.querySelector('input[name="feedback"]:checked').value;
+            document.getElementById("thank-you").style.display = "block";
+            document.getElementById("feedback-value").textContent = feedbackValue;
+        });
+    </script>
+
+</body>
+</html>
